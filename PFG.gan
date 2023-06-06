@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="PFG" company="" webLink="http://" view-date="2023-01-16" view-index="0" gantt-divider-location="300" resource-divider-location="300" version="3.1.3103" locale="es_ES">
+    <description>
+        <![CDATA[Diagrama Gantt del Proyecto de Fin de Grado de Carlos Castillo González]]>
+    </description>
+    <view zooming-state="default:7" id="gantt-chart">
+        <field id="tpd3" name="Nombre" width="166" order="0"/>
+        <field id="tpd4" name="Fecha de inicio" width="64" order="1"/>
+        <field id="tpd5" name="Fecha de fin" width="64" order="2"/>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Nombre" width="209" order="0"/>
+        <field id="1" name="Función" width="85" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="80" name="Memoria e investigación" color="#8cb6ce" meeting="false" start="2023-01-23" duration="75" complete="0" thirdDate="2023-02-21" thirdDate-constraint="0" expand="true">
+            <depend id="82" type="2" difference="0" hardness="Strong"/>
+            <depend id="84" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="0" name="Creación del videojuego" color="#8cb6ce" meeting="false" start="2023-01-23" duration="7" complete="0" thirdDate="2022-11-28" thirdDate-constraint="0" expand="true">
+            <depend id="23" type="2" difference="0" hardness="Strong"/>
+            <task id="4" name="Master videojuegos 2D" color="#8cb6ce" meeting="false" start="2023-01-23" duration="1" complete="0" thirdDate="2022-11-28" thirdDate-constraint="0" expand="true">
+                <depend id="12" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="8" name="Idea" color="#8cb6ce" meeting="false" start="2023-01-23" duration="1" complete="0" thirdDate="2023-01-23" thirdDate-constraint="0" expand="true">
+                <depend id="12" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="12" name="Progamación del videojuego" color="#8cb6ce" meeting="false" start="2023-01-24" duration="5" complete="0" thirdDate="2023-01-20" thirdDate-constraint="0" expand="true">
+                <depend id="19" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="19" name="Testeo" color="#8cb6ce" meeting="false" start="2023-01-31" duration="1" complete="0" thirdDate="2023-01-20" thirdDate-constraint="0" expand="true">
+                <depend id="26" type="2" difference="0" hardness="Strong"/>
+            </task>
+        </task>
+        <task id="23" name="Creación de IA que juege" color="#000000" meeting="false" start="2023-02-01" duration="13" complete="0" thirdDate="2023-02-01" thirdDate-constraint="0" expand="true">
+            <task id="26" name="IA basada en Reglas" color="#8cb6ce" meeting="false" start="2023-02-01" duration="2" complete="0" thirdDate="2023-02-01" thirdDate-constraint="0" expand="false">
+                <depend id="35" type="2" difference="0" hardness="Strong"/>
+                <task id="29" name="Creación" meeting="false" start="2023-02-01" duration="1" complete="0" expand="true">
+                    <depend id="31" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="31" name="Testeo" meeting="false" start="2023-02-02" duration="1" complete="0" expand="true"/>
+            </task>
+            <task id="35" name="IA basada en Máquina de estados" color="#8cb6ce" meeting="false" start="2023-02-03" duration="2" complete="0" thirdDate="2023-02-01" thirdDate-constraint="0" expand="false">
+                <depend id="41" type="2" difference="0" hardness="Strong"/>
+                <task id="37" name="Creación" color="#8cb6ce" meeting="false" start="2023-02-03" duration="1" complete="0" thirdDate="2023-02-03" thirdDate-constraint="0" expand="true">
+                    <depend id="39" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="39" name="Testeo" color="#8cb6ce" meeting="false" start="2023-02-06" duration="1" complete="0" thirdDate="2023-02-06" thirdDate-constraint="0" expand="true"/>
+            </task>
+            <task id="41" name="IA Basada en una Red Neuronal" color="#8cb6ce" meeting="false" start="2023-02-07" duration="9" complete="0" thirdDate="2023-02-01" thirdDate-constraint="0" expand="false">
+                <task id="56" name="Investigación" color="#8cb6ce" meeting="false" start="2023-02-07" duration="2" complete="0" thirdDate="2023-02-07" thirdDate-constraint="0" expand="true">
+                    <depend id="43" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="43" name="Creación y Entrenamiento" color="#8cb6ce" meeting="false" start="2023-02-09" duration="5" complete="0" thirdDate="2023-02-07" thirdDate-constraint="0" expand="true">
+                    <depend id="45" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="45" name="Testeo" color="#8cb6ce" meeting="false" start="2023-02-16" duration="2" complete="0" thirdDate="2023-02-08" thirdDate-constraint="0" expand="true"/>
+            </task>
+        </task>
+        <task id="71" name="IA que ajusta el nivel de dificultad" color="#8cb6ce" meeting="false" start="2023-02-20" duration="55" complete="0" thirdDate="2023-01-20" thirdDate-constraint="0" expand="true">
+            <depend id="82" type="2" difference="0" hardness="Strong"/>
+            <depend id="84" type="2" difference="0" hardness="Strong"/>
+            <task id="72" name="Investigación" color="#8cb6ce" meeting="false" start="2023-02-20" duration="5" complete="0" thirdDate="2023-02-20" thirdDate-constraint="0" expand="true">
+                <depend id="73" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="73" name="Creación y Entrenamiento" color="#8cb6ce" meeting="false" start="2023-02-27" duration="50" complete="0" thirdDate="2023-02-27" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="82" name="Corrección de memoria" color="#8cb6ce" meeting="false" start="2023-05-08" duration="3" complete="0" thirdDate="2023-05-08" thirdDate-constraint="0" expand="true"/>
+        <task id="84" name="Ultimos Testeos" color="#8cb6ce" meeting="false" start="2023-05-08" duration="5" complete="0" thirdDate="2023-05-11" thirdDate-constraint="0" expand="true"/>
+    </tasks>
+    <resources/>
+    <allocations/>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+    <roles roleset-name="SoftwareDevelopment"/>
+</project>
