@@ -11,6 +11,8 @@ public class PlayerMove : MonoBehaviour
     private bool Grounded;
     private RaycastHit2D hit2D;
     public LayerMask groundLayer;
+    public GameObject BulletPrefab;
+    private float LastShoot;
 
     private float Speed = 8f;
     private float JumpForce = 800f;
@@ -38,7 +40,7 @@ public class PlayerMove : MonoBehaviour
             transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
         }
 
-        //Debug.DrawRay(transform.position, Vector2.down * 1.1f, Color.red);
+        //Debug.DrawRay(transform.position, Vector2.left * 0.6f, Color.red);
         if (Physics2D.Raycast(transform.position, Vector2.down, 1.1f, groundLayer))
         {
             Grounded = true;
@@ -49,9 +51,15 @@ public class PlayerMove : MonoBehaviour
         }
 
         // Si pulsa ESPACIO llama a la función
-        if (Input.GetKeyDown(KeyCode.W) && Grounded)
+        if (Input.GetKeyDown(KeyCode.Space) && Grounded)
         {
             Jump();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time > LastShoot + 0.25f)
+        {
+            Shoot();
+            LastShoot = Time.time;
         }
     }
 
@@ -59,6 +67,22 @@ public class PlayerMove : MonoBehaviour
     private void Jump()
     {
         rb2d.AddForce(Vector2.up * JumpForce);
+    }
+
+    private void Shoot()
+    {
+        Vector3 direction; 
+        if(transform.localScale.x == 1.0f)
+        {
+            direction = Vector2.right;
+        }
+        else
+        {
+            direction = Vector2.left;
+        }
+
+        GameObject bullet = Instantiate(BulletPrefab, transform.position + direction * 0.5f , Quaternion.identity);
+        bullet.GetComponent<BulletScript>().SetDirection(direction);
     }
 
     private void FixedUpdate()

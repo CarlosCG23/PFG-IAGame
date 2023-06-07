@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: f29f0a556c07c334595feb710ba8c226
+guid: caf95a6d6cc13564595aa83835647d46
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - BulletPrefab: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
