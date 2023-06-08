@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 
@@ -8,15 +9,15 @@ public class PlayerMove : MonoBehaviour
     // VARIABLES GLOBALES
     private Rigidbody2D rb2d;
     private float Horizontal;
+    //private Vector3 Direction;
     private bool Grounded;
     public GameObject BulletPrefab;
     private float LastShoot;
     private int Health = 5;
+    public TextMeshProUGUI HealthTMP;
 
     private float Speed = 1f;
     private float JumpForce = 150f;
-
-    
 
     void Start()
     {   
@@ -28,8 +29,9 @@ public class PlayerMove : MonoBehaviour
     {
         // +1 o -1 dependiendo de si pulsas A o D
         Horizontal = Input.GetAxisRaw("Horizontal");
+        HealthTMP.SetText(Health.ToString());
 
-        if(Horizontal > 0.0f)
+        if (Horizontal > 0.0f)
         {
             transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         }
@@ -38,7 +40,12 @@ public class PlayerMove : MonoBehaviour
             transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
         }
 
-        //Debug.DrawRay(transform.position, Vector3.down * 0.1f, Color.red);
+        /*
+        Direction = transform.localScale - new Vector3(0.0f, 1.0f, 1.0f);
+        Debug.DrawRay(transform.position, Direction * 1f, Color.red);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Direction, 1f);
+        */
+
         if (Physics2D.Raycast(transform.position, Vector3.down, 0.1f))
         {
             Grounded = true;
@@ -94,8 +101,14 @@ public class PlayerMove : MonoBehaviour
         Health = Health - 1;
         if (Health <= 0)
         {
+            HealthTMP.text = "0";
             Destroy(gameObject);
         }
+    }
+
+    public void Life()
+    {
+        Health = Health + 1;
     }
 }
 

@@ -38,12 +38,17 @@ public class BulletScript : MonoBehaviour
         if (player != null) 
         {
             player.Hit();
+            DestroyBullet();
         }
         if (enemy != null)
         {
-            enemy.Hit();    
+            enemy.Hit();
+            DestroyBullet();
         }
 
-        DestroyBullet();
+        if (collision.CompareTag("Ground"))
+        {
+            DestroyBullet();
+        }
     }
 }

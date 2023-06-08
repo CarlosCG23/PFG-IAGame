@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
@@ -9,13 +11,18 @@ public class EnemyScript : MonoBehaviour
     private float LastShoot;
     public GameObject BulletPrefab;
     private int Health = 3;
+    private Vector3 ForwardDirection;
+    public TextMeshProUGUI HealthEnemyTMP;
+    public LayerMask playerLayer;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        HealthEnemyTMP.SetText(Health.ToString());
+
         if (Player == null)
-        { 
-            return; 
+        {
+            return;
         }
 
         Vector3 direction = Player.transform.position - transform.position;
@@ -23,15 +30,20 @@ public class EnemyScript : MonoBehaviour
         if (direction.x >= 0.0f)
         {
             transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            HealthEnemyTMP.transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
         }
         else
         {
-            transform.localScale = new Vector3 (-1.0f, 1.0f, 1.0f);
+            transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+            HealthEnemyTMP.transform.rotation = new Quaternion(0.0f, 180.0f, 0.0f, 0.0f);
         }
 
-        distance = Mathf.Abs(Player.transform.position.x - transform.position.x);
+        ForwardDirection = transform.localScale - new Vector3(0.0f, 1.0f, 1.0f);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, ForwardDirection, 0.70f, playerLayer);
+        //Debug.DrawRay(transform.position, ForwardDirection * 0.65f, Color.red);
+        //distance = Mathf.Abs(Player.transform.position.x - transform.position.x);
 
-        if (distance < 1.0f && Time.time > LastShoot + 0.5f)
+        if (Time.time > LastShoot + 0.5f && hit.collider != null)
         {
             Shoot();
             LastShoot = Time.time;
@@ -59,6 +71,7 @@ public class EnemyScript : MonoBehaviour
         Health = Health - 1;
         if (Health <= 0)
         {
+            HealthEnemyTMP.text = "0";
             Destroy(gameObject);
         }
     }
