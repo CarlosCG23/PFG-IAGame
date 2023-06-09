@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -103,6 +104,7 @@ public class PlayerMove : MonoBehaviour
         {
             HealthTMP.text = "0";
             Destroy(gameObject);
+            SceneManager.LoadScene("SampleScene");
         }
     }
 

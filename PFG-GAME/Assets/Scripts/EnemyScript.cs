@@ -10,7 +10,7 @@ public class EnemyScript : MonoBehaviour
     private float distance;
     private float LastShoot;
     public GameObject BulletPrefab;
-    private int Health = 3;
+    public int Health;
     private Vector3 ForwardDirection;
     public TextMeshProUGUI HealthEnemyTMP;
     public LayerMask playerLayer;
@@ -39,7 +39,7 @@ public class EnemyScript : MonoBehaviour
         }
 
         ForwardDirection = transform.localScale - new Vector3(0.0f, 1.0f, 1.0f);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, ForwardDirection, 0.70f, playerLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, ForwardDirection, 1.05f, playerLayer);
         //Debug.DrawRay(transform.position, ForwardDirection * 0.65f, Color.red);
         //distance = Mathf.Abs(Player.transform.position.x - transform.position.x);
 
