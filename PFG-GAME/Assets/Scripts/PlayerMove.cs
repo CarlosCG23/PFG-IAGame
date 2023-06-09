@@ -10,15 +10,15 @@ public class PlayerMove : MonoBehaviour
     // VARIABLES GLOBALES
     private Rigidbody2D rb2d;
     private float Horizontal;
-    //private Vector3 Direction;
+    private float Direction = 1.0f;
     private bool Grounded;
     public GameObject BulletPrefab;
     private float LastShoot;
-    private int Health = 5;
+    private int Health = 7;
     public TextMeshProUGUI HealthTMP;
 
     private float Speed = 1f;
-    private float JumpForce = 150f;
+    private float JumpForce = 175f;
 
     void Start()
     {   
@@ -35,19 +35,23 @@ public class PlayerMove : MonoBehaviour
         if (Horizontal > 0.0f)
         {
             transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            Direction = 1.0f;
         }
         else if(Horizontal < 0.0f)
         {
             transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+            Direction = -1.0f;
         }
 
         /*
         Direction = transform.localScale - new Vector3(0.0f, 1.0f, 1.0f);
         Debug.DrawRay(transform.position, Direction * 1f, Color.red);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Direction, 1f);
+        Debug.DrawRay(transform.position - new Vector3(0.04f, 0.0f, 0.0f) * Direction, Vector3.down * 0.1f, Color.red);
+        Debug.DrawRay(transform.position, Vector3.down * 0.1f, Color.red);
         */
 
-        if (Physics2D.Raycast(transform.position, Vector3.down, 0.1f))
+        if (Physics2D.Raycast(transform.position - new Vector3(0.04f, 0.0f, 0.0f) * Direction, Vector3.down, 0.1f) || Physics2D.Raycast(transform.position, Vector3.down, 0.1f))
         {
             Grounded = true;
         }
@@ -87,7 +91,7 @@ public class PlayerMove : MonoBehaviour
             direction = Vector2.left;
         }
 
-        GameObject bullet = Instantiate(BulletPrefab, transform.position + direction * 0.1f , Quaternion.identity);
+        GameObject bullet = Instantiate(BulletPrefab, transform.position + direction * 0.13f , Quaternion.identity);
         bullet.GetComponent<BulletScript>().SetDirection(direction);
     }
 

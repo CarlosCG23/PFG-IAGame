@@ -29,5 +29,9 @@ public class LoadSceneScript : MonoBehaviour
         {
             CargarEscenaConDificultad(2);
         }
+        else if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene("SampleScene");
+        }
     }
 }

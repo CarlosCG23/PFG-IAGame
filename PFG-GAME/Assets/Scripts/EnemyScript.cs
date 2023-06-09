@@ -43,7 +43,7 @@ public class EnemyScript : MonoBehaviour
         //Debug.DrawRay(transform.position, ForwardDirection * 0.65f, Color.red);
         //distance = Mathf.Abs(Player.transform.position.x - transform.position.x);
 
-        if (Time.time > LastShoot + 0.5f && hit.collider != null)
+        if (Time.time > LastShoot + 0.65f && hit.collider != null)
         {
             Shoot();
             LastShoot = Time.time;
