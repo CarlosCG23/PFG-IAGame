@@ -39,7 +39,7 @@ public class EnemyScript : MonoBehaviour
         }
 
         ForwardDirection = transform.localScale - new Vector3(0.0f, 1.0f, 1.0f);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, ForwardDirection, 1.05f, playerLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, ForwardDirection, 1.35f, playerLayer);
         //Debug.DrawRay(transform.position, ForwardDirection * 0.65f, Color.red);
         //distance = Mathf.Abs(Player.transform.position.x - transform.position.x);
 

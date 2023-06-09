@@ -6,7 +6,7 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
     private Rigidbody2D rb2d;
-    private float Speed = 2f;
+    private float Speed = 3f;
     private Vector2 Direction;
 
     // Start is called before the first frame update

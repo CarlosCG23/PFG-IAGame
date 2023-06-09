@@ -7,36 +7,31 @@ using UnityEngine.SceneManagement;
 public class DifficultyManager : MonoBehaviour
 {
     public TextMeshProUGUI DifficultyTMP;
+    public static int difficulty;
     public GameObject enemyManagerObject;
 
     //public GameObject Object;
     void Start()
     {
-        DifficultyTMP.text = "Easy";
-        EnemyManagerScript enemyManagerScript = enemyManagerObject.GetComponent<EnemyManagerScript>();
-        enemyManagerScript.Health = 3;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.G))
+        if (difficulty == 0)
         {
             EnemyManagerScript enemyManagerScript = enemyManagerObject.GetComponent<EnemyManagerScript>();
             enemyManagerScript.Health = 3;
             DifficultyTMP.text = "Easy";
         }
-        else if (Input.GetKeyDown(KeyCode.H))
+        else if (difficulty == 1)
         {
             EnemyManagerScript enemyManagerScript = enemyManagerObject.GetComponent<EnemyManagerScript>();
             enemyManagerScript.Health = 5;
-            DifficultyTMP.text = "Menium";
+            DifficultyTMP.text = "Medium";
         }
-        else if(Input.GetKeyDown(KeyCode.J))
+        else if (difficulty == 2)
         {
             EnemyManagerScript enemyManagerScript = enemyManagerObject.GetComponent<EnemyManagerScript>();
             enemyManagerScript.Health = 9;
             DifficultyTMP.text = "Hard";
         }
     }
+
+    
 }
