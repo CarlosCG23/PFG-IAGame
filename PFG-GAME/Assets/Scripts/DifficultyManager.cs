@@ -6,13 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class DifficultyManager : MonoBehaviour
 {
+    // VARIABLES GLOBALES
     public TextMeshProUGUI DifficultyTMP;
     public static int difficulty;
     public GameObject enemyManagerObject;
 
-    //public GameObject Object;
     void Start()
     {
+        // controlador de dificultad, dependiendo de si la dificultad es facil media o dificil
+        // este escribirá en que nivel esta y modificará la vida de los enemigos
+        // llamando al atributo del script que pone la vida, al ser un objeto estatico esto solo cambiará 
+        // dentro del juego mientras este esta corriendo
         if (difficulty == 0)
         {
             EnemyManagerScript enemyManagerScript = enemyManagerObject.GetComponent<EnemyManagerScript>();

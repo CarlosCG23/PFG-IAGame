@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EnemyManagerScript : MonoBehaviour
 {
+    // VARIABLES GLOBALES
     public TextMeshProUGUI EnemyCountTMP;
     private int EnemyCount;
     private int EnemyTot;
@@ -15,9 +16,12 @@ public class EnemyManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // obtiene todos los hijos del objeto
         EnemyTot = transform.childCount;
 
         // Acceder al atributo "vida" de cada hijo
+        // y les modificas la vida uno a uno en base a como  
+        // la ha modificado el difficultyManagerScript()
         for (int i = 0; i < EnemyTot; i++)
         {
             Transform hijo = transform.GetChild(i);
@@ -28,9 +32,15 @@ public class EnemyManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // el contador empieza en 0 y este va aumentando
         EnemyCount = EnemyTot - transform.childCount;
+
+        // se escribe en el canvas del contador de enemigos eliminados
         EnemyCountTMP.text = EnemyCount.ToString();
 
+        // si eliminas a todos los enemigos se sumará una estrella
+        // llamando a la funcion que las suma
+        // el controlador esta para que solo entre una vez
         if (EnemyCount == EnemyTot && controller == 0)
         {
             StarManagerScript starManagerScript = starManagerObject.GetComponent<StarManagerScript>();

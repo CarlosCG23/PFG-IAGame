@@ -11,9 +11,12 @@ public class StarManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Escribirá en todo momento el numero de
+        // estrellas que congia el jugador
         StarCountTMP.text = StarCount.ToString();
     }
 
+    // Funcion para añadir una estrella al contado
     public void StarAdd()
     {
         StarCount = StarCount + 1;  
