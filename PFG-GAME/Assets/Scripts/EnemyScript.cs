@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,14 +8,21 @@ using UnityEngine;
 public class EnemyScript : MonoBehaviour
 {
     // VARIABLES GLOBALES
+    private Rigidbody2D rb2d;
     public GameObject Player;
-    private float distance;
     private float LastShoot;
     public GameObject BulletPrefab;
     public int Health;
     private Vector3 ForwardDirection;
+    private float Speed = 0.0f;
     public TextMeshProUGUI HealthEnemyTMP;
     public LayerMask playerLayer;
+
+    void Start()
+    {
+        // Referenciando el objeto
+        rb2d = GetComponent<Rigidbody2D>();
+    }
 
     // Update is called once per frame
     private void Update()
@@ -57,6 +65,22 @@ public class EnemyScript : MonoBehaviour
             Shoot();
             LastShoot = Time.time;
         }
+
+        // Movimiento un poco más inteligente de los enemigos
+        // si ven al personaje de acercan a el hasta una distancia y se quedan ahí
+        if (hit.collider != null && Math.Abs(direction.x) > 0.60f)
+        {
+            Speed = 0.5f;
+        }
+        else if (Math.Abs(direction.x) <= 0.65f)
+        {
+            Speed = 0.0f;
+        }
+    }
+    private void FixedUpdate()
+    {
+        // Movimiento del personaja en el eje X
+        rb2d.velocity = new Vector2(ForwardDirection.x * Speed, rb2d.velocity.y);
     }
 
     // funcion para que el enemigo dispare, igual que la del player
