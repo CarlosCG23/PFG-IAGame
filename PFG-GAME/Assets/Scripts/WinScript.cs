@@ -1,5 +1,7 @@
+using Grpc.Core;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +9,24 @@ public class WinScript : MonoBehaviour
 {
     // VARIABLES GLOBALES
     public GameObject starManagerObject;
+    public TextMeshProUGUI GameStatusTMP;
+    public static int gameStatus = -1;
+
+    private void Update()
+    {
+        if (gameStatus == -1)
+        {
+            GameStatusTMP.text = "Game in Progress";
+        }
+        else if (gameStatus == 0)
+        {
+            GameStatusTMP.text = "You Win";
+        }
+        else if (gameStatus == 1)
+        {
+            GameStatusTMP.text = "You Lose";
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -21,7 +41,14 @@ public class WinScript : MonoBehaviour
             {
                 starManagerScript.StarAdd();
             }
-            SceneManager.LoadScene("SampleScene");
+            gameStatus = 0;
+            Invoke("LoadScene", 3f);
+            //SceneManager.LoadScene("SampleScene");
         }
+    }
+
+    private void LoadScene()
+    {
+        SceneManager.LoadScene("SampleScene");
     }
 }

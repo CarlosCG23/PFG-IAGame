@@ -131,7 +131,9 @@ public class PlayerMove : MonoBehaviour
         {
             HealthTMP.text = "0";
             Destroy(gameObject);
-            SceneManager.LoadScene("SampleScene");
+            WinScript.gameStatus = 1;
+            Invoke("LoadScene", 3f);
+            //SceneManager.LoadScene("SampleScene");
         }
     }
 
@@ -141,6 +143,11 @@ public class PlayerMove : MonoBehaviour
     public void Life()
     {
         Health = Health + 1;
+    }
+
+    private void LoadScene()
+    {
+        SceneManager.LoadScene("SampleScene");
     }
 }
 
