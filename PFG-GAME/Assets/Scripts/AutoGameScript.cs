@@ -35,8 +35,7 @@ public class AutoGameScript : MonoBehaviour
             WinScript.gameStatus = 0;
             StarManagerScript.StarCount = randomNumberSTAR;
             //Debug.Log("El número de estrellas obtenido es: " + randomNumberSTAR);
-            //LoadScene();
-            Invoke("LoadScene", 1f);
+            Invoke("Start", 1f);
             /*
             if (randomNumberSTAR == 3)
             {
@@ -62,8 +61,8 @@ public class AutoGameScript : MonoBehaviour
         {
             //Debug.Log("Has Perdido");
             WinScript.gameStatus = 1;
-            //LoadScene();
-            Invoke("LoadScene", 1f);
+            StarManagerScript.StarCount = 0;
+            Invoke("Start", 1f);
             /*
             dificultCalculator = dificultCalculator - 1;
             if (dificultCalculator <= 0)

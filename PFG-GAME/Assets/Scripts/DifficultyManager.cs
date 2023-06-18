@@ -10,7 +10,7 @@ public class DifficultyManager : MonoBehaviour
     public TextMeshProUGUI DifficultyTMP;
     public static int difficulty = 0;
     public GameObject enemyManagerObject;
-    
+    /* 
     void Start()
     {
         // para que la aplicacion siga funcionanado en segundo plano
@@ -39,7 +39,8 @@ public class DifficultyManager : MonoBehaviour
             DifficultyTMP.text = "Hard";
         }
     }
-    /*
+    */
+    
     private void Update()
     {
         // controlador de dificultad, dependiendo de si la dificultad es facil media o dificil
@@ -65,5 +66,5 @@ public class DifficultyManager : MonoBehaviour
             DifficultyTMP.text = "Hard";
         }
     }
-    */
+    
 }

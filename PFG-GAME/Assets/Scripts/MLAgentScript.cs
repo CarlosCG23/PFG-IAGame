@@ -16,7 +16,7 @@ public class MLAgentScript : Agent
         // Asegurarse de que el objeto que contiene el script no se destruya al cambiar de escena
         DontDestroyOnLoad(gameObject);
     }
-    */
+    
     public bool runInTrainingMode;
 
     private void Awake()
@@ -26,6 +26,7 @@ public class MLAgentScript : Agent
             DontDestroyOnLoad(gameObject);
         }
     }
+    */
 
     public override void OnEpisodeBegin()
     {
@@ -42,35 +43,32 @@ public class MLAgentScript : Agent
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
-        // Tomar la acción elegida por el agente y actualizar la variable estática de nivel de dificultad
-        var vectorAction = actionBuffers.DiscreteActions;
-        DifficultyManager.difficulty = (int)vectorAction[0];
-        //Debug.Log(DifficultyManager.difficulty);
-        //actionTaken = true;
-        // Calcular y otorgar la recompensa según el resultado de la partida
-        float reward = 0f;
-        if (WinScript.gameStatus == 0 && StarManagerScript.StarCount < 3)
+        if(WinScript.gameStatus != -1)
         {
-            reward = 1.0f;
-        }
-        else if (WinScript.gameStatus == 0 && StarManagerScript.StarCount == 3)
-        {
-            reward = -0.4f;
-        }
-        else if (WinScript.gameStatus == 1)
-        {
-            reward = -0.4f;
-        }
+            // Tomar la acción elegida por el agente y actualizar la variable estática de nivel de dificultad
+            var vectorAction = actionBuffers.DiscreteActions;
+            DifficultyManager.difficulty = (int)vectorAction[0];
+            //Debug.Log(DifficultyManager.difficulty);
 
-        // Otorgar la recompensa al agente
-        AddReward(reward);
-        EndEpisode();
-        /*
-        // Cargar la escena de la partida después de terminar el episodio
-        if (actionTaken)
-        {
-            SceneManager.LoadScene("SampleScene");
-        }*/
+            // Calcular y otorgar la recompensa según el resultado de la partida
+            float reward = 0f;
+            if (WinScript.gameStatus == 0 && StarManagerScript.StarCount < 3)
+            {
+                reward = 1.0f;
+            }
+            else if (WinScript.gameStatus == 0 && StarManagerScript.StarCount == 3)
+            {
+                reward = -0.4f;
+            }
+            else if (WinScript.gameStatus == 1)
+            {
+                reward = -0.4f;
+            }
+
+            // Otorgar la recompensa al agente
+            AddReward(reward);
+            EndEpisode();
+        }
     }
 }
 
