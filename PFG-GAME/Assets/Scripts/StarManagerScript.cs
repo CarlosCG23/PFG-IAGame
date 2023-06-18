@@ -6,7 +6,12 @@ using UnityEngine;
 public class StarManagerScript : MonoBehaviour
 {
     public TextMeshProUGUI StarCountTMP;
-    private int StarCount = 0;
+    public static int StarCount = 0;
+
+    public void Start()
+    {
+        StarCount = 0;
+    }
 
     // Update is called once per frame
     void Update()

@@ -12,7 +12,7 @@ public class AutoGameScript : MonoBehaviour
         dificultCalculator = DifficultyManager.difficulty;
         WinScript.gameStatus = -1;
 
-        Invoke("GameResolution", 2f);
+        Invoke("GameResolution", 1f);
     }
 
     private void GameResolution()
@@ -31,48 +31,58 @@ public class AutoGameScript : MonoBehaviour
 
         if (randomNumberWIN == 0)
         {
-            Debug.Log("Has Ganado");
+            //Debug.Log("Has Ganado");
             WinScript.gameStatus = 0;
-            Debug.Log("El número de estrellas obtenido es: " + randomNumberSTAR);
+            StarManagerScript.StarCount = randomNumberSTAR;
+            //Debug.Log("El número de estrellas obtenido es: " + randomNumberSTAR);
+            //LoadScene();
+            Invoke("LoadScene", 1f);
+            /*
             if (randomNumberSTAR == 3)
             {
                 dificultCalculator = dificultCalculator + 1;
                 if (dificultCalculator >= 2)
                 {
                     DifficultyManager.difficulty = 2;
-                    Invoke("LoadScene", 2f);
+                    Invoke("LoadScene", 1f);
                 }
                 else
                 {
                     DifficultyManager.difficulty = dificultCalculator;
-                    Invoke("LoadScene", 2f);
+                    Invoke("LoadScene", 1f);
                 }
             }
             else if (randomNumberSTAR < 3)
             {
-                Invoke("LoadScene", 2f);
+                Invoke("LoadScene", 1f);
             }
+            */
         }
         else if (randomNumberWIN == 1)
         {
-            Debug.Log("Has Perdido");
+            //Debug.Log("Has Perdido");
             WinScript.gameStatus = 1;
+            //LoadScene();
+            Invoke("LoadScene", 1f);
+            /*
             dificultCalculator = dificultCalculator - 1;
             if (dificultCalculator <= 0)
             {
                 DifficultyManager.difficulty = 0;
-                Invoke("LoadScene", 2f);
+                Invoke("LoadScene", 1f);
             }
             else
             {
                 DifficultyManager.difficulty = dificultCalculator;
-                Invoke("LoadScene", 2f);
+                Invoke("LoadScene", 1f);
             }
+            */
         }
     }
 
     private void LoadScene()
     {
         SceneManager.LoadScene("SampleScene");
+        //Invoke("Start", 1f);
     }
 }
