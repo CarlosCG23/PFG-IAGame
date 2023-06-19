@@ -14,7 +14,7 @@ public class WinScript : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(gameStatus);
+        //Debug.Log(gameStatus);
         if (gameStatus == -1)
         {
             GameStatusTMP.text = "Game in Progress";
