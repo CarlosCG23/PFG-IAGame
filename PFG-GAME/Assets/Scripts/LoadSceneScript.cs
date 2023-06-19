@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class LoadSceneScript : MonoBehaviour
 {
+    void Start()
+    {
+        WinScript.gameStatus = -1;
+    }
     // Update is called once per frame
     void Update()
     {

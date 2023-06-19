@@ -29,7 +29,7 @@ public class PlayerMove : MonoBehaviour
     private void Update()
     {
         // Pone el texto de la vida del jugador
-        HealthTMP.SetText(Health.ToString());
+        HealthTMP.text = Health.ToString();
 
         // +1 o -1 dependiendo de si pulsas A o D
         Horizontal = Input.GetAxisRaw("Horizontal");
@@ -132,8 +132,8 @@ public class PlayerMove : MonoBehaviour
             HealthTMP.text = "0";
             Destroy(gameObject);
             WinScript.gameStatus = 1;
-            Invoke("LoadScene", 3f);
-            //SceneManager.LoadScene("SampleScene");
+            //Invoke("LoadScene", 3f);
+            SceneManager.LoadScene("SampleScene");
         }
     }
 

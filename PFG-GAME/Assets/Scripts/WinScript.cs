@@ -10,10 +10,11 @@ public class WinScript : MonoBehaviour
     // VARIABLES GLOBALES
     public GameObject starManagerObject;
     public TextMeshProUGUI GameStatusTMP;
-    public static int gameStatus = -1;
+    public static int gameStatus;
 
     private void Update()
     {
+        Debug.Log(gameStatus);
         if (gameStatus == -1)
         {
             GameStatusTMP.text = "Game in Progress";
@@ -42,8 +43,8 @@ public class WinScript : MonoBehaviour
                 starManagerScript.StarAdd();
             }
             gameStatus = 0;
-            Invoke("LoadScene", 3f);
-            //SceneManager.LoadScene("SampleScene");
+            //Invoke("LoadScene", 3f);
+            SceneManager.LoadScene("SampleScene");
         }
     }
 
