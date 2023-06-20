@@ -33,7 +33,7 @@ public class EnemyManagerScript : MonoBehaviour
     void Update()
     {
         // el contador empieza en 0 y este va aumentando
-        EnemyCount = EnemyTot - transform.childCount;
+        EnemyCount = EnemyTot - transform.childCount + 4;
 
         // se escribe en el canvas del contador de enemigos eliminados
         EnemyCountTMP.text = EnemyCount.ToString();

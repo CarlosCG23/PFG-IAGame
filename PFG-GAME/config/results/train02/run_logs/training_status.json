@@ -1,23 +1,23 @@
 {
-    "DifficultyAgent": {
+    "DifAgent": {
         "checkpoints": [
             {
-                "steps": 143521,
-                "file_path": "results\\train02\\DifficultyAgent\\DifficultyAgent-143521.onnx",
-                "reward": 0.142597085962066,
-                "creation_time": 1687123375.5868747,
+                "steps": 165461,
+                "file_path": "results\\train02\\DifAgent\\DifAgent-165461.onnx",
+                "reward": 0.9635697761658255,
+                "creation_time": 1687203819.406654,
                 "auxillary_file_paths": [
-                    "results\\train02\\DifficultyAgent\\DifficultyAgent-143521.pt"
+                    "results\\train02\\DifAgent\\DifAgent-165461.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 143521,
-            "file_path": "results\\train02\\DifficultyAgent.onnx",
-            "reward": 0.142597085962066,
-            "creation_time": 1687123375.5868747,
+            "steps": 165461,
+            "file_path": "results\\train02\\DifAgent.onnx",
+            "reward": 0.9635697761658255,
+            "creation_time": 1687203819.406654,
             "auxillary_file_paths": [
-                "results\\train02\\DifficultyAgent\\DifficultyAgent-143521.pt"
+                "results\\train02\\DifAgent\\DifAgent-165461.pt"
             ]
         }
     },

@@ -22,8 +22,9 @@ public class PrizeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         // Esto es para que el contador empiece en 0 y vaya sumando desde ahí
-        PrizeCount = PrizeTot - transform.childCount;
+        PrizeCount = PrizeTot - transform.childCount + 4;
 
         // Escribe el el canvas el numero de premios que consigue el jugador
         PrizeCountTMP.text = PrizeCount.ToString();

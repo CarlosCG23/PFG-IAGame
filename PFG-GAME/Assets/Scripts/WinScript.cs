@@ -14,7 +14,6 @@ public class WinScript : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(gameStatus);
         if (gameStatus == -1)
         {
             GameStatusTMP.text = "Game in Progress";
@@ -37,14 +36,18 @@ public class WinScript : MonoBehaviour
         // si la colision es con el player cargara la escena nuevamente
         if (collision.CompareTag("Player"))
         {
+            PlayerMove player = collision.GetComponent<PlayerMove>();
+           
             // si el objeto existe entonces e añadirá una estrella
             if (starManagerScript != null)
             {
                 starManagerScript.StarAdd();
             }
             gameStatus = 0;
-            //Invoke("LoadScene", 3f);
-            SceneManager.LoadScene("SampleScene");
+
+            //player.ResetPlayer();
+            Invoke("LoadScene", 1f);
+            //SceneManager.LoadScene("SampleScene");
         }
     }
 

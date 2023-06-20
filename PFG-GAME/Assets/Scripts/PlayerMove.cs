@@ -16,6 +16,7 @@ public class PlayerMove : MonoBehaviour
     private float LastShoot;
     private int Health = 7;
     public TextMeshProUGUI HealthTMP;
+    private Vector3 initialPosition;
 
     private float Speed = 1f;
     private float JumpForce = 175f;
@@ -24,6 +25,7 @@ public class PlayerMove : MonoBehaviour
     {   
         // Referenciando el objeto
         rb2d = GetComponent<Rigidbody2D>();
+        initialPosition = rb2d.position;
     }
 
     private void Update()
@@ -131,10 +133,21 @@ public class PlayerMove : MonoBehaviour
         {
             HealthTMP.text = "0";
             Destroy(gameObject);
+            
             WinScript.gameStatus = 1;
-            //Invoke("LoadScene", 3f);
-            SceneManager.LoadScene("SampleScene");
+            ResetPlayer();
+            
+            Invoke("LoadScene", 1f);
+            //SceneManager.LoadScene("SampleScene");
         }
+    }
+
+    public void ResetPlayer()
+    {
+        rb2d.transform.position = initialPosition;
+        Health = 7;
+        WinScript.gameStatus = -1;
+        StarManagerScript.StarCount = 0;
     }
 
     // funcion para sumarle una vida al personaje
