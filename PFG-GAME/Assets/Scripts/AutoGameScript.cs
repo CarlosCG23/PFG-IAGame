@@ -19,7 +19,7 @@ public class AutoGameScript : MonoBehaviour
     {
         // Generar un número aleatorio entre 0 y 1, redondeado a 0 o 1
         int randomNumberWIN = Mathf.RoundToInt(Random.Range(0f, 1f));
-
+        //int randomNumberWIN = 0;
         // Imprimir el número aleatorio en la consola
         // Debug.Log("Número aleatorio 0 1: " + randomNumberWIN);
 
@@ -35,7 +35,8 @@ public class AutoGameScript : MonoBehaviour
             WinScript.gameStatus = 0;
             StarManagerScript.StarCount = randomNumberSTAR;
             //Debug.Log("El número de estrellas obtenido es: " + randomNumberSTAR);
-            Invoke("LoadScene", 1f);
+            
+            Invoke("LoadScene", 0.2f);
             /*
             if (randomNumberSTAR == 3)
             {
@@ -62,7 +63,8 @@ public class AutoGameScript : MonoBehaviour
             //Debug.Log("Has Perdido");
             WinScript.gameStatus = 1;
             StarManagerScript.StarCount = 0;
-            Invoke("LoadScene", 1f);
+
+            Invoke("LoadScene", 0.2f);
             /*
             dificultCalculator = dificultCalculator - 1;
             if (dificultCalculator <= 0)

@@ -10,17 +10,9 @@ using Unity.VisualScripting;
 
 public class MLAgentScript : Agent
 {
-    //private bool actionTaken;
-    /*
-    private void Start()
-    {
-        // Asegurarse de que el objeto que contiene el script no se destruya al cambiar de escena
-        DontDestroyOnLoad(gameObject);
-    }
-    */
     private static MLAgentScript instance;
     private int lastDifficulty;
-    private int actionDifficulty;
+    private int difficulty;
 
     private void Awake()
     {
@@ -32,83 +24,103 @@ public class MLAgentScript : Agent
             instance = this;
         }
     }
-    
 
     public override void OnEpisodeBegin()
     {
-        // Indicar que no se ha tomado ninguna acción todavía
-        //actionTaken = false;
-        lastDifficulty = DifficultyManager.difficulty;
+
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
         // Observar la cantidad de estrellas obtenidas y el nivel de dificultad actual
         sensor.AddObservation(StarManagerScript.StarCount);
-        //sensor.AddObservation(DifficultyManager.difficulty);
+        sensor.AddObservation(DifficultyManager.difficulty);
     }
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
-        if(WinScript.gameStatus != -1)
+        if (WinScript.gameStatus != -1)
         {
             // Tomar la acción elegida por el agente y actualizar la variable estática de nivel de dificultad
-            var vectorAction = actionBuffers.DiscreteActions;
-            actionDifficulty = (int)vectorAction[0];
-            //Debug.Log(actionDifficulty);
+            int NextActionDifficulty = actionBuffers.DiscreteActions[0];
+            Debug.Log(NextActionDifficulty);
 
             // Calcular y otorgar la recompensa según el resultado de la partida
-            if (WinScript.gameStatus == 0 && StarManagerScript.StarCount < 3)
+            if (StarManagerScript.StarCount == 1 || StarManagerScript.StarCount == 2) // se mantiene
             {
-                if (lastDifficulty == actionDifficulty)
+                if(NextActionDifficulty == DifficultyManager.difficulty)
                 {
-                    // Otorgar la recompensa al agente
-                    AddReward(1.0f); 
-                    DifficultyManager.difficulty = actionDifficulty;
-                    EndEpisode();
+                    SetReward(1f);
                 }
-                else if (lastDifficulty > actionDifficulty || lastDifficulty < actionDifficulty)
+                else
                 {
-                    // Otorgar la recompensa al agente
-                    AddReward(-0.8f);
-                    DifficultyManager.difficulty = actionDifficulty;
-                    EndEpisode();
+                    SetReward(-1f);
                 }
             }
-            else if (WinScript.gameStatus == 0 && StarManagerScript.StarCount == 3)
+            if (StarManagerScript.StarCount == 3) // aumenta
             {
-                if (lastDifficulty < actionDifficulty || actionDifficulty == 2)
+                if(NextActionDifficulty > DifficultyManager.difficulty || NextActionDifficulty == 3)
                 {
-                    // Otorgar la recompensa al agente
-                    AddReward(1.0f);
-                    DifficultyManager.difficulty = actionDifficulty;
-                    EndEpisode();
+                    SetReward(1f);
                 }
-                else if (lastDifficulty > actionDifficulty || (lastDifficulty == actionDifficulty && actionDifficulty != 3))
-                {
-                    // Otorgar la recompensa al agente
-                    AddReward(-0.8f);
-                    DifficultyManager.difficulty = actionDifficulty;
-                    EndEpisode();
+                else if(NextActionDifficulty < DifficultyManager.difficulty)
+                { 
+                    SetReward(-1f); 
                 }
             }
-            else if (WinScript.gameStatus == 1)
+            if (StarManagerScript.StarCount == 0) // Disminuye
             {
-                if (lastDifficulty > actionDifficulty || actionDifficulty == 0)
+                if (NextActionDifficulty < DifficultyManager.difficulty || NextActionDifficulty == 0)
                 {
-                    // Otorgar la recompensa al agente
-                    AddReward(1.0f);
-                    DifficultyManager.difficulty = actionDifficulty;
-                    EndEpisode();
+                    SetReward(1f);
                 }
-                else if ((actionDifficulty != 0 && lastDifficulty == actionDifficulty) || lastDifficulty < actionDifficulty)
+                else if (NextActionDifficulty > DifficultyManager.difficulty)
                 {
-                    // Otorgar la recompensa al agente
-                    AddReward(-0.8f);
-                    DifficultyManager.difficulty = actionDifficulty;
-                    EndEpisode();
+                    SetReward(-1f);
+                }
+            }
+            DifficultyManager.difficulty = NextActionDifficulty;
+            EndEpisode();
+        }
+    }
+
+    public override void Heuristic(in ActionBuffers actionsOut)
+    {
+        /*
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            difficulty = 0;
+        }
+        else if (Input.GetKeyDown(KeyCode.H))
+        {
+            difficulty = 1;
+        }
+        else if (Input.GetKeyDown(KeyCode.J))
+        {
+            difficulty = 2;
+        }
+        */
+        difficulty = DifficultyManager.difficulty;
+        if (WinScript.gameStatus == 0)
+        {
+            if (StarManagerScript.StarCount == 3)
+            {
+                difficulty = difficulty + 1;
+                
+                if (difficulty >= 2)
+                {
+                    difficulty = 2;
                 }
             }
         }
-    }
+        else if (WinScript.gameStatus == 1)
+        {
+            difficulty = difficulty - 1;
+            if (difficulty <= 0)
+            {
+                difficulty = 0;
+            }
+        }
+        actionsOut.DiscreteActions.Array[0] = difficulty;
+    } 
 }

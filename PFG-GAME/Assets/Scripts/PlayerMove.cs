@@ -132,22 +132,15 @@ public class PlayerMove : MonoBehaviour
         if (Health <= 0)
         {
             HealthTMP.text = "0";
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            GetComponent<SpriteRenderer>().enabled = false; 
+            GetComponent<CapsuleCollider2D>().enabled = false;  
             
             WinScript.gameStatus = 1;
-            ResetPlayer();
             
-            Invoke("LoadScene", 1f);
+            Invoke("LoadScene", 0.2f);
             //SceneManager.LoadScene("SampleScene");
         }
-    }
-
-    public void ResetPlayer()
-    {
-        rb2d.transform.position = initialPosition;
-        Health = 7;
-        WinScript.gameStatus = -1;
-        StarManagerScript.StarCount = 0;
     }
 
     // funcion para sumarle una vida al personaje
