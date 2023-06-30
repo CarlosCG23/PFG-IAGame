@@ -135,7 +135,7 @@ public class PlayerMove : MonoBehaviour
             //Destroy(gameObject);
             GetComponent<SpriteRenderer>().enabled = false; 
             GetComponent<CapsuleCollider2D>().enabled = false;  
-            
+            StarManagerScript.StarCount = 0;
             WinScript.gameStatus = 1;
             
             Invoke("LoadScene", 0.2f);
